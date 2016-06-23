@@ -1,0 +1,66 @@
+	I Remerciements
+	
+	II Introduction
+
+Le Master TNSI peut être effectué en alternance ce qui permet d'une part de mettre en application les connaissances théoriques
+et d'autres part d'avoir un lien fort avec le monde du travail.
+Grâce au Groupe OPEN, un des Leader français des services informatique avec plus de 3500 collaborateurs et une implantations
+internationale, j'ai eu la chance de reprendre les études afin d'élargir mes compétences tout en continuant ma prestation
+chez notre client Décathlon.
+
+	Dans un premier temps nous présenterons le Groupe Open ainsi que l'entreprise Décathlon 
+	puis nous détaillerons ma mission chez ce client et enfin nous dresserons les enseignements de cette année sur le plan professionnel.
+	
+	III Présentation des entreprises
+	
+	# Groupe Open
+http://www.open-groupe.com/sites/default/files/historique_open_2014_v3.png
+Le Groupe Open est une des premières ESN de france qui prends ses racines en 1989 et se développe au point d'entrer en bourse en 1998.
+L'audace est une des valeurs d'Open et avec la fusion des SSII Teamlog et Sylis, l'entreprise prends véritablement son envol.
+Notre Groupe, résolument tournée vers l'international avec une présence en France, Belgique, Luxembourg et Pays-bas,
+partage sa passion avec plus de 3500 collaborateurs
+
+	# Décathlon
+
+Avec plus de 1000 magasins présent dans 29 pays
+
+	IV La mission
+
+Twist est l'application utilisée par la partie ecommerce des entrepôts de décathlon.
+Cet outil fait partie d'une chaine logicielle permettant la gestion des commandes internet de l'enseigne.
+	TODO: schéma simplifié Osmose, SAP, GE, Twist
+Twist est un projet née en 2010.
+Avec plus de 50 développeurs différents, le code source est victime du syndrome du plat de spaghettis
+c'est pourquoi j'ai émis l'idée d'un refactoring du coeur du système : le colisage.
+Depuis 2013, j'ai mis en évidence les gains qui pouvait être retirés d'un remaniement en profondeur de ce processus dont les principaux sont :
+	- gain de performance
+	- diminution des bugs
+	- évolutions facilitées
+Le sujet fut abordées plusieurs fois mais il ne pouvait être réalisé par manque de moyens financier et humain.
+L'arrivée d'une nouvelle recrue en provenance d'un des leaders du commerce electronique aller changer la donne.
+Ayant côtoyé une autre méthodologie de colisage lors de son précédent travail et ayant apprécié l'efficacité de travail des magasiniers,
+il souhaitait la mettre en oeuvre pour Décathlon.
+Il chiffra le retour sur investissement ce qui permet de débloquer les moyens afin de lancer les développements du projet Packman.
+
+	V Les personnes clefs
+À l'origine du projet Éric G. est le responsable fonctionnel, c'est lui qui écrit le cahier des charges fonctionnels et qui prends en charge une partie des tests.
+Caroline L. , elle écrit le cahier des charges technique et suis l'avancement du projet.
+L'équipe de développement est composé d'Antoine E. et moi-même.
+
+	
+	VI Environnement techniques
+		Général
+Twist suit le modèle MVC et est construit à l'aide du framework v4, qui est un framework interne de Decathlon lui même basé sur le framework Spring.
+GWT s'occupe de la partie Vue tandis que le reste de l'application est en J2E.
+		
+		GWT
+GWT est une boite à outils développé par Google afin de facilité les développements de site utilisant la techologie Ajax 
+en apportant au Javascript les outils de développements et de dégogage de Java, en minimisant les écarts entres navigateurs et en facilitant la gestion des appels asynchrones.
+
+		Framework v4
+Ce framework interne tente de poser de bonnes bases du développements via l'utilisation de Maven et de Spring.
+Il prends en charge une partie de la gestion des droits des utilisateurs, permet une gestion facilitée des paramètres et offre un tableau de bord
+
+http://www.open-groupe.com/sites/default/files/valeur.png
+
+ 
