@@ -15,7 +15,7 @@ chez notre client Décathlon.
 	
 	# Groupe Open
 http://www.open-groupe.com/sites/default/files/historique_open_2014_v3.png
-Le Groupe Open est une des premières ESN de france qui prends ses racines en 1989 et se développe au point d'entrer en bourse en 1998.
+Le Groupe Open est une des premières ESN de france, elle prend racine en 1989 et se développe au point d'entrer en bourse en 1998.
 L'audace est une des valeurs d'Open et avec la fusion des SSII Teamlog et Sylis, l'entreprise prends véritablement son envol.
 Notre Groupe, résolument tournée vers l'international avec une présence en France, Belgique, Luxembourg et Pays-bas,
 partage sa passion avec plus de 3500 collaborateurs
@@ -40,7 +40,8 @@ Le sujet fut abordées plusieurs fois mais il ne pouvait être réalisé par man
 L'arrivée d'une nouvelle recrue en provenance d'un des leaders du commerce electronique aller changer la donne.
 Ayant côtoyé une autre méthodologie de colisage lors de son précédent travail et ayant apprécié l'efficacité de travail des magasiniers,
 il souhaitait la mettre en oeuvre pour Décathlon.
-Il chiffra le retour sur investissement ce qui permet de débloquer les moyens afin de lancer les développements du projet Packman.
+Il chiffra le retour sur investissement ce qui permis de débloquer les moyens afin de lancer les développements de refonte du colisage,
+le projet est alors nommée : projet Packman.
 
 	V Les personnes clefs
 À l'origine du projet Éric G. est le responsable fonctionnel, c'est lui qui écrit le cahier des charges fonctionnels et qui prends en charge une partie des tests.
@@ -59,8 +60,36 @@ en apportant au Javascript les outils de développements et de dégogage de Java
 
 		Framework v4
 Ce framework interne tente de poser de bonnes bases du développements via l'utilisation de Maven et de Spring.
-Il prends en charge une partie de la gestion des droits des utilisateurs, permet une gestion facilitée des paramètres et offre un tableau de bord
+Il prends en charge une partie de la gestion des droits des utilisateurs, offre un tableau de bord, permet une gestion facilitée des paramètres et des accès aux données.
 
 http://www.open-groupe.com/sites/default/files/valeur.png
 
- 
+		Serveur
+Notre application étant utilisée dans 10 pays (pour un total de 24 entrepôts), elle est considérée comme critique d'où la nécessitée d'avoir un load balancing.
+Le premier avantage est d'augmenter la tolérance aux pannes et le second est de pouvoir mettre à jour l'application en minimisant l'impact sur le terrain.
+A l'heure actuelle, les instances sont réparties sur 6 serveurs différents.
+WebLogic est la solution retenue pour déployée nos ear.
+
+		Oracle
+Twist utilise le SGBDR Oracle afin de répartir sur 3 serveurs l'ensemble de ses données.
+L'utilisation d'hibernate permet de s'affranchir des spécificitées de cette base de données bien que pour certaine manipulation lourde,
+des requêtes natives restes privilégiées.
+Le framework v4 de Décathlon permet d'obtenir très rapidement des opérations CRUD sur de nouvelles entités ce qui permet un gain 
+de productivité important lors de la création de nouvelles tables.
+
+		Infrastructure
+Deux datacenters indépendants et situés dans des localisations éloignées, mais dont l'emplacement reste secret pour des raisons évidentes de sécurité,
+héberge notre infrastructure, qui se trouve ainsi doublée.
+Un DRP est effectué plusieurs fois par an afin d'en valider le fonctionnement, la complétude et l'exactitude.
+
+		Environnements
+Nous avons a notre disposition deux environements de Préproduction (dont un réservé au projet Packman) et un de Production.
+La gestion des environnements et plus généralement de l'infrastructure est déléguée à deux autres équipes : une en France et une en Chine.
+Ce mode de fonctionnement permet d'avoir un support technique joignable 24H/24 par la personne en charge du support Twist le jour ou celle d'astreinte la nuit.
+
+		Impressions
+Twist est une application relativement gourmande en impressions, nous utilisons donc des serveurs d'impressions CUPS.
+Il y a deux CUPS par instance afin que le second prenne immédiatement la relève en cas de défaillance du premier.
+
+	VII Le projet
+
