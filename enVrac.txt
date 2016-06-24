@@ -1,0 +1,15 @@
+
+	Performance
+		StopWatch
+		Requêtes SQL natives
+		Utilisation de DTO pour limiter les appels ajax
+		
+	Support
+		Log de debug
+		Crash au plus tôt en cas de problème
+		Vérifications côté serveur
+	
+	Bonnes pratiques
+		Refactorisation
+		Tests unitaires
+		
