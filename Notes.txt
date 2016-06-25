@@ -1,15 +1,14 @@
 	I Remerciements
-	
+
 	II Introduction
 
 Le Master TNSI peut être effectué en alternance ce qui permet d'une part de mettre en application les connaissances théoriques
 et d'autres part d'avoir un lien fort avec le monde du travail.
-Grâce au Groupe OPEN, un des Leader français des services informatique avec plus de 3500 collaborateurs et une implantations
-internationale, j'ai eu la chance de reprendre les études afin d'élargir mes compétences tout en continuant ma prestation
-chez notre client Décathlon.
+Grâce au Groupe OPEN, un des Leader français des services informatique, j'ai eu la chance de reprendre les études afin d'élargir mes compétences 
+tout en continuant ma prestation chez notre client Décathlon.
 
-	Dans un premier temps nous présenterons le Groupe Open ainsi que l'entreprise Décathlon 
-	puis nous détaillerons ma mission chez ce client et enfin nous dresserons les enseignements de cette année sur le plan professionnel.
+Dans un premier temps nous présenterons le Groupe Open ainsi que l'entreprise Décathlon 
+puis nous détaillerons ma mission chez ce client et enfin nous dresserons les enseignements de cette année sur le plan professionnel.
 	
 	III Présentation des entreprises
 	
@@ -25,12 +24,20 @@ partage sa passion avec plus de 3500 collaborateurs
 Avec plus de 1000 magasins présent dans 29 pays
 
 	IV La mission
-
-Twist est l'application utilisée par la partie ecommerce des entrepôts de décathlon.
+Twist est le nom de l'application utilisée par la partie ecommerce des entrepôts de décathlon sur laquelle je travaille.
 Cet outil fait partie d'une chaine logicielle permettant la gestion des commandes internet de l'enseigne.
 	TODO: schéma simplifié Osmose, SAP, GE, Twist
-Twist est un projet née en 2010.
-Avec plus de 50 développeurs différents, le code source est victime du syndrome du plat de spaghettis
+Son action s'étends de la prise en charge des magnums en provenance du prélévement des articles en entrepôts à l'expédition aux transporteurs.
+Pour ce faire nous nous appuyons sur plusieurs processus dont les principaux sont :
+La réception : Lorsqu'un article vient a manqué dans un entrepôt CAR, celui ci est commandé sur un entrepôt CAC.
+	Une fois arrivé à destination, le terrain scan un code barre pour confirmer sa bonne réception.
+Le tri/colisage : Les articles sont stockés par secteurs dans l'entrepôt donc si des commandes contiennent des articles de différents secteurs,
+	il faut que ce prélévement soit trié pour dispatcher les articles par commande.
+	L'entrepôt peut décider de prélever l'ensemble des articles d'une commande, l'étape de tri n'est plus nécessaire dans ce cas.
+	Une fois les articles regroupés par commande, il faut les mettre dans un emballage adéquat (carton ou sachet) avec la facture et générer une étiquette transporteur.
+L'expédition : Une fois l'étape de colisage terminée, les colis client sont acheminés dans la zone d'expédition où ils peuvent être associés sur une UAT
+	ou directement à une expédition, via le scan du code barre présent sur l'étiquette transporteur.
+Twist est un projet née en 2010 et avec plus de 50 développeurs différents, le code source est victime du syndrome du plat de spaghettis
 c'est pourquoi j'ai émis l'idée d'un refactoring du coeur du système : le colisage.
 Depuis 2013, j'ai mis en évidence les gains qui pouvait être retirés d'un remaniement en profondeur de ce processus dont les principaux sont :
 	- gain de performance
@@ -45,7 +52,7 @@ le projet est alors nommée : projet Packman.
 
 	V Les personnes clefs
 À l'origine du projet Éric G. est le responsable fonctionnel, c'est lui qui écrit le cahier des charges fonctionnels et qui prends en charge une partie des tests.
-Caroline L. , elle écrit le cahier des charges technique et suis l'avancement du projet.
+Caroline L., elle écrit le cahier des charges technique et suis l'avancement du projet.
 L'équipe de développement est composé d'Antoine E. et moi-même.
 
 	
@@ -91,7 +98,8 @@ Ce mode de fonctionnement permet d'avoir un support technique joignable 24H/24 p
 Twist est une application relativement gourmande en impressions, nous utilisons donc des serveurs d'impressions CUPS.
 Il y a deux CUPS par instance afin que le second prenne immédiatement la relève en cas de défaillance du premier.
 
-	VII Le projet
+	VII Le projet	
+
 Avant ce projet, la qualité des commandes n'était pas toujours au rendez-vous et cela peut s'expliquer par le fait que 
 les contrôles étaient réalisées physiquement et de manière ponctuelles après le colisage, c'est à dire qu'en bout de chaine, la personne ayant effectué
 l'emballage devait réouvrir un carton tous les X cartons afin de rescanner l'ensemble des articles pour en valider le contenu.
@@ -110,9 +118,14 @@ Les clients se plaignaient du décalage entre la promesse faite sur le site et l
 Afin d'améliorer l'expérience du consommateur, c'est le système qui indique maintenant combien de commandes sont urgentes 
 et les plus prioritaires seront colisées en premières.
 
-Dans certains pays, pour des raisons légales, il est obligatoire d'imprimer une ou des factures.
+Dans certains pays, il est obligatoire d'imprimer une ou des factures.
 A l'heure actuelle, les factures sont éditées en même temps que le sticker transporteur mais cela ralenti considérablemeent le magasinier qui doit cassé son geste
-en prenant d'abord l'étiquette puis 
+en prenant d'abord l'étiquette puis attendre plusieurs secondes afin que l'imprimante laser atteigne la température nécessaire pour imprimer les factures d'une commande.
+Pour des raisons légales, nous ne pouvons supprimer purement et simplement les factures et le temps de chauffe d'une imprimante laser n'étant pas améliorable de manière logicielle, 
+nous avons cherché comment optimiser ce point dans Packman.
+Avec notre projet, les temps d'impressions sont à la fois réduits car les factures de toutes les commandes sont éditées en une fois donc nous n'avons qu'une seule phase
+de montée de température
+et ce temps est également complétement masqués pour l'utilisateur car les tâches d'impressions sont lancées dès le début du tri en parallèle des actions physiques réalisées.
 
 
 
