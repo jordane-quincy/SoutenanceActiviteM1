@@ -92,4 +92,27 @@ Twist est une application relativement gourmande en impressions, nous utilisons 
 Il y a deux CUPS par instance afin que le second prenne immédiatement la relève en cas de défaillance du premier.
 
 	VII Le projet
+Avant ce projet, la qualité des commandes n'était pas toujours au rendez-vous et cela peut s'expliquer par le fait que 
+les contrôles étaient réalisées physiquement et de manière ponctuelles après le colisage, c'est à dire qu'en bout de chaine, la personne ayant effectué
+l'emballage devait réouvrir un carton tous les X cartons afin de rescanner l'ensemble des articles pour en valider le contenu.
+Cette manière de faire est contraignante pour les magasiniers et coûteuse pour l'entrepôt, que ça soit en temps ou en consommable
+car cette opération nécessite la réimpression d'une étiquette transporteur ainsi que du stoch et un nouveau carton.
+Grâce à Packman, plus besoin d'éventré un carton destinée à l'expédition. Le sticker transporteur sera imprimé si et seulement si la commande est complète.
+En plus d'avoir un effet direct sur la productivité des magasiniers et leur motivation, nous avons ajoutés un feu tricolore dans l'interface afin que l'état
+d'avancement d'un processus soit visualisable en direct : 
+le feu rouge indique que le système attent une action de l'utilisateur, le feu orange indique un changement et un feu vert signifiant la réussite du processus.
+
+Le terrain n'avait pas d'informations par rapport à l'urgence des commandes donc parfois une commande devant être livrés deux jours plus tard pouvait
+être prête à partir avant une commande qui doit être remise au client dans la journée car il n'y avait pas d'ordre à suivre dans le colisage.
+D'autre part, certains transporteurs ne font qu'une ramasse par jour alors que d'autres peuvent en faire plusieurs mais rien ne permettait de coliser 
+au plus vite les commandes devant être chargés dans un camion arrivant prochainement.
+Les clients se plaignaient du décalage entre la promesse faite sur le site et la date de livraison effective.
+Afin d'améliorer l'expérience du consommateur, c'est le système qui indique maintenant combien de commandes sont urgentes 
+et les plus prioritaires seront colisées en premières.
+
+Dans certains pays, pour des raisons légales, il est obligatoire d'imprimer une ou des factures.
+A l'heure actuelle, les factures sont éditées en même temps que le sticker transporteur mais cela ralenti considérablemeent le magasinier qui doit cassé son geste
+en prenant d'abord l'étiquette puis 
+
+
 

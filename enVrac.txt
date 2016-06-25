@@ -1,4 +1,11 @@
-
+	
+Fonctionnellement :
+	
+	Industrialisation du process (séparation en deux parties physiques et logicielles)
+	Controle qualité à 100% avant d'imprimer le sticker (feu vert)
+	Evolutions à venir (choix du carton, image de l'article manquant, RFID multi-detection)
+	
+Techniquement :
 	Performance
 		StopWatch
 		Requêtes SQL natives
@@ -10,6 +17,6 @@
 		Vérifications côté serveur
 	
 	Bonnes pratiques
-		Refactorisation
 		Tests unitaires
-		
+		Refactorisation
+		Gestion des kits
