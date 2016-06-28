@@ -129,3 +129,37 @@ et ce temps est également complétement masqués pour l'utilisateur car les tâ
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Focus technique
+
+	La gestion des kits
+
+L'exemple typique d'un kit est le banc de musculation qui
+est généralement divisé en 3 parties qui doivent nécessairement être envoyées ensemble au client.
+
+Voici le déroulement du processus avant Packman :
+Le magasinier scan le code barre d'un article ce qui déclenche un appel au serveur qui retourne des informations sur l'article.
+La page coté client se charge alors de vérifier s'il s'agit d'un kit et si c'est le cas, fait un second appel au serveur pour
+lancer l'impression d'un sticker pour chaque partie du kit et afficher une popup afin de scanner la première partie du kit.
+Une fois la première partie du kit scanné, un nouvel appel est fait au serveur pour valider qu'il n'y a pas eu de scan de trop de partie
+(dans notre cas, cela vérifie que l'utilisateur n'a pas scanné un code barre de la forme articleCode_XX_03 où XX est supérieur à 03)
+et déplacer y quantité de l'article, y étant 1 divisé par le nombre de partie du kit (ici, la quantité est donc de 0,33333333...).
+Avant de retourner coté client, une vérification est faite pour voir si l'ensemble du kit a été scanné en arrondissant 
+à 7 chiffres après la virgule la quantité, le but étant à la fin du processus de passé de 3 fois 0,33 soit 0.99 à 1.
+Puis le magasinier scan la seconde et la troisième partie du kit.
+
+Avec Packman il était hors de question de faire autant d'appels serveurs et d'arrondis approximatifs.
+Voici comment j'ai implémenté la gestion des kits :
+Le magasinier scan le code barre d'un article ce qui déclenche un appel au serveur, reconnaissant un kit nous lançons l'impression des stickers
+et renvoyons un DTO avec l'article code et le nombre de partie du kit.
+Coté client, nous affichons une popup pour scanner les différentes parties du kit.
+Connaissant précisément ce que le magasinier doit scanner et dans quel ordre, aucun appel serveur n'est effectué.
+Une fois que toutes les parties sont correctement scannées, nous lançons l'appel serveur du scan article avec le nombre de partie du kit qui ont été scannés
+(au lieu de 1 dans le cas d'un article non kit), nous pouvons donc côté serveur déplacer 1 quantité de cet article.
+
+	Les armoires
+
+L'armoire est un nouveau concept donc elle a nécessité la création de nouvelles tables.
+Voici la composition de la table SHELF 
+	identifiant : 
+	un code, d'un état, d'un id plateforme, d'une place, d'un id d'entrepôt, d'un type d'armoire et d'un ensemble de racks.
